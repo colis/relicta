@@ -1,0 +1,20 @@
+{
+  "name": "colis/relicta-core",
+  "description": "Relicta Core",
+  "type": "wordpress-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Carmine Colicino",
+      "email": "carminecolicino@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "RelictaCore\\": "includes/classes/"
+    }
+  }
+}

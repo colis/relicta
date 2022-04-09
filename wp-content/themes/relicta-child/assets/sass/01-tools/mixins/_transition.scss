@@ -1,0 +1,16 @@
+/* ==========================================================================
+TRANSITION
+========================================================================== */
+
+/**
+ * Transition shortcut
+ */
+@mixin transition($property: false, $easing: var(--transition-base-easing), $duration: var(--transition-base-duration), $delay: false) {
+	transition-duration: $duration;
+	transition-property: $property;
+
+	@if ($delay) {
+		transition-delay: $delay;
+	}
+	transition-timing-function: $easing;
+}

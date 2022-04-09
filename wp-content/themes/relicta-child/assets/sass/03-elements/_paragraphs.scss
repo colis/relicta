@@ -1,0 +1,31 @@
+/* ==========================================================================
+PARAGRAPHS
+========================================================================== */
+
+p {
+
+	&:empty {
+		display: none;
+	}
+
+	b,
+	strong {
+		font-weight: var(--font-weight-bold);
+	}
+
+}
+
+.has-small-font-size {
+
+	@include font_prop_small;
+}
+
+.has-medium-font-size {
+
+	@include font_prop_medium;
+}
+
+.has-large-font-size {
+
+	@include font_prop_large;
+}

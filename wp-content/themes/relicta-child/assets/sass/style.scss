@@ -1,0 +1,66 @@
+//------------------------------------
+// Import settings and tools.
+// (e.g. variables, mixins, functions, etc..)
+//------------------------------------
+
+@import "import_all_settings";
+
+/*------------------------------------
+Generic
+------------------------------------*/
+
+@import "02-generic/body";
+@import "02-generic/box-sizing";
+@import "02-generic/fonts";
+@import "02-generic/normalize";
+
+/*------------------------------------
+Elements
+- only simple HTML tags can go here
+------------------------------------*/
+
+@import "03-elements/alignment";
+@import "03-elements/headings";
+@import "03-elements/images";
+@import "03-elements/links";
+@import "03-elements/paragraphs";
+
+/*------------------------------------
+Objects
+- must be prefixed with `o-*`
+------------------------------------*/
+
+
+/*------------------------------------
+Components
+- must be prefixed with `c-*`
+------------------------------------*/
+
+@import "05-components/footer";
+@import "05-components/header";
+@import "05-components/navigation";
+
+/*------------------------------------
+WP
+- In this section you should add any relevant file that overrides
+- a specific WordPress component (e.g. block, plugin, etc..)
+------------------------------------*/
+
+@import "06-wp/blocks";
+@import "06-wp/patterns";
+
+/*------------------------------------
+Utilities
+- ideally prefixed with `u-*`
+------------------------------------*/
+
+@import "07-utilities/accessibility";
+@import "07-utilities/colors";
+@import "07-utilities/typography";
+
+/*------------------------------------
+Trumps
+------------------------------------*/
+
+@import "08-trumps/shame";
+@import "08-trumps/temp";

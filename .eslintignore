@@ -1,0 +1,10 @@
+vendor
+webpack.config.js
+wp-admin
+wp-includes
+wp-content/plugins
+wp-content/uploads
+wp-content/themes/astra
+wp-content/themes/seedlet
+wp-content/themes/astra-child/dist
+wp-content/themes/relicta-child/dist

@@ -1,0 +1,55 @@
+/* ==========================================================================
+BLOCK OVERRIDE STYLES
+========================================================================== */
+
+// Alignment.
+
+.wp-block[data-align="full"],
+.wp-block[data-align="full"] .block-editor-block-list__block {
+	max-width: none;
+}
+
+.wp-block[data-align="left"],
+.wp-block[data-align="right"] {
+
+	// Image block.
+
+	> .wp-block-image {
+		margin: var(--spacing-s) var(--spacing-m);
+	}
+
+	// Pullquote block.
+
+	> .wp-block-pullquote {
+		max-width: 420px;
+	}
+}
+
+.wp-block[data-align="left"] {
+
+	// Image block.
+
+	> .wp-block-image {
+		margin-left: 0;
+	}
+}
+
+.wp-block[data-align="right"] {
+
+	// Image block.
+
+	> .wp-block-image {
+		margin-right: 0;
+	}
+}
+
+// Group block.
+
+.wp-block-group__inner-container {
+	max-width: $grid-width-full;
+	margin: 0 auto;
+}
+
+//------------------------------------
+// Block Pattern overrides.
+//------------------------------------
