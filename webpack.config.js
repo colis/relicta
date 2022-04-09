@@ -1,12 +1,12 @@
 /**
  * External dependencies
  */
-const path = require( 'path' );
+const path = require('path');
 
 /**
  * WordPress dependencies
  */
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = [
 	{
@@ -16,9 +16,7 @@ module.exports = [
 				'./wp-content/themes/relicta-child/assets/js/index.js',
 				'./wp-content/themes/relicta-child/assets/sass/style.scss',
 			],
-			admin: [
-				'./wp-content/themes/relicta-child/assets/sass/admin.scss',
-			],
+			admin: ['./wp-content/themes/relicta-child/assets/sass/admin.scss'],
 		},
 		output: {
 			path: path.resolve(
@@ -26,6 +24,6 @@ module.exports = [
 				'./wp-content/themes/relicta-child/dist'
 			),
 		},
-		plugins: [ ...defaultConfig.plugins.slice( 1 ) ],
+		plugins: [...defaultConfig.plugins.slice(1)],
 	},
 ];
