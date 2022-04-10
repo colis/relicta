@@ -7,5 +7,4 @@ wp-content/plugins/**/dist/*
 !wp-content/plugins/relicta-*
 wp-content/plugins
 wp-content/uploads
-wp-content/themes/seedlet
-wp-content/themes/relicta-child/dist
+wp-content/themes/relicta/dist

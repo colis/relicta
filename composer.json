@@ -34,8 +34,7 @@
 	"require": {
 		"php": ">=7.4",
 		"colis/relicta-core": "*",
-		"wpackagist-plugin/wordpress-seo": "^18.5",
-		"wpackagist-theme/seedlet": "^1.1.13"
+		"wpackagist-plugin/wordpress-seo": "^18.5"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",

@@ -11,14 +11,14 @@
  */
 function relicta_styles() {
 	wp_register_style(
-		'relicta-child-theme-styles',
+		'relicta-theme-styles',
 		get_stylesheet_directory_uri() . '/dist/style-frontend.css',
-		[ 'seedlet-style', 'seedlet-style-navigation', 'seedlet-print-style' ],
-		CHILD_THEME_RELICTA_VERSION,
+		[],
+		RELICTA_THEME_VERSION,
 		'all'
 	);
 
-	wp_enqueue_style( 'relicta-child-theme-styles' );
+	wp_enqueue_style( 'relicta-theme-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'relicta_styles' );
 
@@ -27,14 +27,14 @@ add_action( 'wp_enqueue_scripts', 'relicta_styles' );
  */
 function relicta_scripts() {
 	wp_register_script(
-		'relicta-child-theme-scripts',
+		'relicta-theme-scripts',
 		get_stylesheet_directory_uri() . '/dist/frontend.js',
 		[ 'jquery' ],
-		CHILD_THEME_RELICTA_VERSION,
+		RELICTA_THEME_VERSION,
 		true
 	);
 
-	wp_enqueue_script( 'relicta-child-theme-scripts' );
+	wp_enqueue_script( 'relicta-theme-scripts' );
 }
 add_action( 'wp_enqueue_scripts', 'relicta_scripts' );
 

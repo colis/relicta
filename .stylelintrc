@@ -1,11 +1,25 @@
 {
 	"extends": "@wordpress/stylelint-config/scss",
 	"rules": {
-		"at-rule-no-unknown": [true, {
-			"ignoreAtRules": ["function", "if", "for", "each", "include", "mixin", "return", "extend"]
-		}],
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [
+					"function",
+					"if",
+					"for",
+					"each",
+					"include",
+					"mixin",
+					"return",
+					"extend"
+				]
+			}
+		],
 		"selector-class-pattern": null,
 		"selector-nested-pattern": null,
-		"no-descending-specificity": null
+		"no-descending-specificity": null,
+		"function-name-case": null,
+		"scss/no-global-function-names": null
 	}
 }

@@ -5,7 +5,8 @@ BLOCK OVERRIDE STYLES
 // Alignment.
 
 .wp-block[data-align="full"],
-.wp-block[data-align="full"] .block-editor-block-list__block {
+.wp-block[data-align="full"] .block-editor-block-list__block,
+.wp-block[data-align="full"] .wp-block-group__inner-container {
 	max-width: none;
 }
 

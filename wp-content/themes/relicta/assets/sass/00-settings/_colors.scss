@@ -2,23 +2,9 @@
 COLOR PALETTE
 ========================================================================== */
 
-//
 // Map of colours where [key] is the name of the colour
 // and [value] is the hex code.
-//
-$colors: (
-	"black": #000,
-	"white": #fff,
-	"gold": #996e42,
-	"blue": #005bbb,
-	"grey": #dfded9,
-	"dark-grey": #3a3a3a,
-	"dusty-grey": #999,
-	"natural-grey": #988f86,
-	"silver-grey": #ccc,
-	"mercury": #e5e5e5,
-	"alabaster": #fbfbfb,
-);
+$colors: getMapFromJSON("colors");
 
 :root {
 	// Brand colours.

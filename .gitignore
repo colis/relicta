@@ -165,7 +165,7 @@ asset-manifest.json
 
 ### Themes ###
 wp-content/themes/*
-!wp-content/themes/*-child/
+!wp-content/themes/relicta/
 
 ### Plugins ###
 # All plugins, except project specific (the rest should be handled by composer)
@@ -179,8 +179,5 @@ wp-content/themes/*
 ########################################################
 
 ### Theme assets ###
-# Astra theme
-/wp-content/themes/astra-child/dist/
-
-# Seedlet theme
-/wp-content/themes/relicta-child/dist/
+# Relicta theme
+/wp-content/themes/relicta/dist/

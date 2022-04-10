@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fc8049f29ee0065f4883fd6b1c6bbc7",
+    "content-hash": "ca1411fe4641d7b2272c9461aa004a83",
     "packages": [
         {
             "name": "colis/relicta-core",
@@ -197,24 +197,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-seo/"
-        },
-        {
-            "name": "wpackagist-theme/seedlet",
-            "version": "1.1.13",
-            "source": {
-                "type": "svn",
-                "url": "https://themes.svn.wordpress.org/seedlet/",
-                "reference": "1.1.13"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/seedlet.1.1.13.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-theme",
-            "homepage": "https://wordpress.org/themes/seedlet/"
         }
     ],
     "packages-dev": [

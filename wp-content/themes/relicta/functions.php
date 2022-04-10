@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_RELICTA_VERSION', '1.0.0' );
+define( 'RELICTA_THEME_VERSION', '1.0.0' );
 define( 'RELICTA_DIR', trailingslashit( get_stylesheet_directory() ) );
 define( 'RELICTA_URL', trailingslashit( get_stylesheet_directory_uri() ) );
 
@@ -21,6 +21,22 @@ define( 'RELICTA_URL', trailingslashit( get_stylesheet_directory_uri() ) );
  */
 
 /**
+ * Setup the theme.
+ */
+require get_template_directory() . '/inc/setup.php';
+
+/**
  * Scripts and Styles related functions.
  */
 require RELICTA_DIR . '/inc/enqueues.php';
+
+/**
+ * Register menus.
+ */
+require get_template_directory() . '/inc/menus.php';
+
+
+/**
+ * Custom content functions.
+ */
+require get_template_directory() . '/inc/content.php';

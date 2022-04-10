@@ -25,7 +25,6 @@
 	<!-- Third-party plugins and themes. -->
 	<exclude-pattern>/plugins/query-monitor/*</exclude-pattern>
 	<exclude-pattern>/plugins/wordpress-seo/*</exclude-pattern>
-	<exclude-pattern>/themes/seedlet/*</exclude-pattern>
 
 	<!-- Other files and folders -->
 	<exclude-pattern>/*.asset.php</exclude-pattern>

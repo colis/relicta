@@ -3,9 +3,5 @@ wp-admin
 wp-includes
 wp-content/plugins
 wp-content/uploads
-wp-content/themes/astra
-wp-content/themes/seedlet
-wp-content/themes/astra-child/assets/sass/02-generic/_normalize.scss
-wp-content/themes/astra-child/dist
-wp-content/themes/relicta-child/assets/sass/02-generic/_normalize.scss
-wp-content/themes/relicta-child/dist
+wp-content/themes/relicta/assets/sass/02-generic/_normalize.scss
+wp-content/themes/relicta/dist

@@ -19,9 +19,9 @@ TYPOGRAPHY
 }
 
 @mixin font_prop_heading( $heading-type: 1, $font-weight: "regular" ) {
-	font-family: var(--font-family-headings);
+	font-family: var(--font-family-primary);
 	font-size: var(--font-size-h#{$heading-type}-mobile);
-	font-weight: var(--font-weight-headings-#{$font-weight});
+	font-weight: var(--font-weight-primary-#{$font-weight});
 	line-height: var(--line-height-h#{$heading-type}-mobile);
 
 	@include for-tablet-landscape-up {
