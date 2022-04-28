@@ -1,0 +1,33 @@
+/* ==========================================================================
+GRID & CONTAINERS
+========================================================================== */
+
+.o-container {
+
+	@include grid_container;
+}
+
+.o-container--medium {
+
+	@include grid_container__medium;
+}
+
+.o-container--small {
+
+	@include grid_container__small;
+}
+
+.o-container--x-small {
+
+	@include grid_container__x-small;
+}
+
+.o-container--narrow {
+
+	@include grid_container__narrow;
+}
+
+.o-container--negative {
+
+	@include grid_container__negative;
+}

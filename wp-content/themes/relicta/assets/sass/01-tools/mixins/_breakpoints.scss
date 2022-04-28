@@ -12,7 +12,7 @@ Example usage:
 
 @mixin for-phone-up {
 
-	@media (max-width: #{$phone-min}) {
+	@media (min-width: #{$phone-min}) {
 		@content;
 	}
 }
@@ -20,13 +20,6 @@ Example usage:
 @mixin for-tablet-portrait-up {
 
 	@media (min-width: #{$tablet-portrait-min}) {
-		@content;
-	}
-}
-
-@mixin for-tablet-astra-up {
-
-	@media (min-width: #{$tablet-astra-min}) {
 		@content;
 	}
 }
@@ -62,13 +55,6 @@ Example usage:
 @mixin up-to-tablet-portrait {
 
 	@media (max-width: #{$tablet-portrait-max}) {
-		@content;
-	}
-}
-
-@mixin up-to-tablet-astra {
-
-	@media (max-width: #{$tablet-astra-max}) {
 		@content;
 	}
 }

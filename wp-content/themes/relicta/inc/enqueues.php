@@ -38,27 +38,18 @@ function relicta_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'relicta_scripts' );
 
-if ( ! function_exists( 'relicta_admin_styles' ) ) {
-	/**
-	 * Enqueue backend admin styles.
-	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
-	 */
-	function relicta_admin_styles() {
+/**
+ * Enqueue backend admin styles.
+ */
+function relicta_admin_styles() {
+	wp_register_style(
+		'relicta-admin-styles',
+		get_stylesheet_directory_uri() . '/dist/admin.css',
+		[],
+		RELICTA_THEME_VERSION,
+		'all'
+	);
 
-		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
-
-		$editor_stylesheet_path = get_stylesheet_directory_uri() . '/dist/admin.css';
-
-		// Enqueue editor styles.
-		add_editor_style(
-			[
-				$editor_stylesheet_path,
-			]
-		);
-	}
+	wp_enqueue_style( 'relicta-admin-styles' );
 }
-add_action( 'after_setup_theme', 'relicta_admin_styles' );
+add_action( 'enqueue_block_editor_assets', 'relicta_admin_styles' );

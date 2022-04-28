@@ -1,0 +1,36 @@
+/* ==========================================================================
+SECTION BLOCK
+========================================================================== */
+
+section.wp-block-group {
+
+	.wp-block-group__inner-container {
+
+		h1 {
+			font-size: 36px;
+			font-weight: var(--font-weight-primary-bold);
+
+			@include for-tablet-portrait-up {
+				font-size: 64px;
+			}
+
+			@include for-tablet-landscape-up {
+				font-size: 92px;
+			}
+		}
+
+		> p {
+			font-size: var(--font-size-h2-mobile);
+			font-weight: var(--font-weight-primary-medium);
+			line-height: 1.5;
+
+			@include for-tablet-portrait-up {
+				font-size: var(--font-size-h1-mobile);
+			}
+
+			@include for-tablet-landscape-up {
+				font-size: var(--font-size-h1-desktop);
+			}
+		}
+	}
+}

@@ -1,0 +1,34 @@
+/* ==========================================================================
+HERO BLOCK
+========================================================================== */
+
+.hero {
+
+	.wp-block-cover {
+		min-height: 55vh;
+
+		@include for-tablet-landscape-up {
+			min-height: 100vh;
+		}
+	}
+
+	p {
+
+		@include reset-all;
+		font-weight: var(--font-weight-primary-black);
+		font-size: 48px;
+		line-height: 1.25 !important;
+
+		@include for-phone-up {
+			font-size: 72px;
+		}
+
+		@include for-tablet-portrait-up {
+			font-size: 96px;
+		}
+
+		@include for-tablet-landscape-up {
+			font-size: 128px;
+		}
+	}
+}

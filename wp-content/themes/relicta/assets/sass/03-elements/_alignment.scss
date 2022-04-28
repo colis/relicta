@@ -10,3 +10,8 @@ ALIGNMENT
 		float: none;
 	}
 }
+
+.alignfull {
+
+	@include grid_container__negative;
+}

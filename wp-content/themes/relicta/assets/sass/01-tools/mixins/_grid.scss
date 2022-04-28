@@ -10,6 +10,27 @@ GRID
 	padding-right: $grid-gutter;
 	position: relative;
 	width: 100%;
+
+	@include for-tablet-landscape-up {
+		padding-left: var(--spacing-s);
+		padding-right: var(--spacing-s);
+	}
+}
+
+@mixin grid_container__medium {
+	max-width: $grid-width-medium;
+}
+
+@mixin grid_container__small {
+	max-width: $grid-width-small;
+}
+
+@mixin grid_container__x-small {
+	max-width: $grid-width-x-small;
+}
+
+@mixin grid_container__narrow {
+	max-width: $grid-width-narrow;
 }
 
 @mixin grid_container__negative {
