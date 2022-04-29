@@ -7,7 +7,7 @@
 
 declare( strict_types=1 );
 
-namespace RelictaCore\Taxonomy;
+namespace RelictaCore\Taxonomies;
 
 use RelictaCore\Registrable;
 
@@ -62,5 +62,12 @@ abstract class BaseTaxonomy implements Registrable {
 	 *
 	 * @return array Custom post types array.
 	 */
-	abstract protected function get_post_types() : array;
+	abstract protected function get_post_types(): array;
+
+	/**
+	 * Gets the labels array for custom taxonomy configuration.
+	 *
+	 * @return array Array of labels.
+	 */
+	abstract protected function get_labels(): array;
 }

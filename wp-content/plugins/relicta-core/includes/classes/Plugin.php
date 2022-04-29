@@ -15,9 +15,7 @@ namespace RelictaCore;
 class Plugin {
 
 	const REGISTRABLE_SERVICES = [
-		Gutenberg\Gutenberg::class,
-		PostType\ExampleCPT::class,
-		Taxonomy\ExampleTax::class,
+		PostTypes\Award::class,
 	];
 
 	/**

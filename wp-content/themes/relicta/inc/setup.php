@@ -83,9 +83,19 @@ if ( ! function_exists( 'relicta_setup' ) ) :
 		// Add support for full and wide align images.
 		add_theme_support( 'align-wide' );
 
+		// Add support for responsive embeds.
+		\add_theme_support( 'responsive-embeds' );
+
 		// Remove support for custom colors and font sizes.
 		add_theme_support( 'disable-custom-colors' );
 		add_theme_support( 'editor-button-styles' );
+
+		// Remove support for gradients.
+		\add_theme_support( 'editor-gradient-presets', [] );
+		\add_theme_support( 'disable-custom-gradients' );
+
+		// Remove support for Core Block Patterns.
+		\remove_theme_support( 'core-block-patterns' );
 
 		/**
 		 * Add color palette for the gutenberg editor.

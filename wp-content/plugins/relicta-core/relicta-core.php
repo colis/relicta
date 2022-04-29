@@ -16,9 +16,6 @@ declare( strict_types=1 );
 
 namespace RelictaCore;
 
-// Exit if accessed directly.
-defined( 'ABSPATH' ) || die();
-
 // Useful global constants.
 define( 'RELICTA_CORE_VERSION', '1.0.0' );
 define( 'RELICTA_CORE_URL', plugin_dir_url( __FILE__ ) );

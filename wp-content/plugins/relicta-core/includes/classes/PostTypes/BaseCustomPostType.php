@@ -5,11 +5,9 @@
  * @package RelictaCore
  */
 
-namespace RelictaCore\PostType;
+namespace RelictaCore\PostTypes;
 
 use RelictaCore\Registrable;
-
-defined( 'ABSPATH' ) || die();
 
 /**
  * Abstract class BaseCustomPostType.
