@@ -33,4 +33,46 @@ section.wp-block-group {
 			}
 		}
 	}
+
+	&.image-overlay {
+		height: 250px;
+		margin-top: 30vw;
+
+		@include for-phone-up {
+			margin-top: 40vw;
+		}
+
+		@include for-tablet-portrait-up {
+			margin-top: 45vw;
+		}
+
+		@include for-tablet-landscape-up {
+			height: 500px;
+			margin-top: 350px;
+		}
+
+		.wp-block-group__inner-container {
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: -20vw;
+
+			@include for-phone-up {
+				top: -35vw;
+			}
+
+			@include for-tablet-portrait-up {
+				top: -40vw;
+			}
+
+			@include for-tablet-landscape-up {
+				top: -300px;
+			}
+		}
+
+		.wp-block-image {
+
+			@include reset-all;
+		}
+	}
 }
