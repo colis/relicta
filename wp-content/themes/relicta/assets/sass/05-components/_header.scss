@@ -3,12 +3,14 @@ HEADER
 ========================================================================== */
 
 .c-header {
+	padding-top: var(--spacing-s);
 	position: absolute;
 	width: 100%;
 	z-index: 2;
 
 	&.sticky {
 		background-color: rgba(0, 52, 89, 0.9);
+		padding-top: 0;
 		position: fixed;
 		top: 0;
 	}
