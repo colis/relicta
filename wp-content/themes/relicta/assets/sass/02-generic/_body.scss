@@ -6,4 +6,5 @@ body {
 
 	@include font_prop_body;
 	color: var(--color-black);
+	overflow-x: hidden;
 }
