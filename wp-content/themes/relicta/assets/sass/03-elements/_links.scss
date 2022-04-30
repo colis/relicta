@@ -4,4 +4,10 @@ LINKS
 
 a {
 	color: var(--color-blue);
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
 }

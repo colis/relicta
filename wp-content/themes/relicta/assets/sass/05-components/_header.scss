@@ -2,5 +2,157 @@
 HEADER
 ========================================================================== */
 
-@import "header/header";
-@import "header/site-branding";
+.c-header {
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+
+	&.sticky {
+		background-color: rgba(0, 52, 89, 0.9);
+		position: fixed;
+		top: 0;
+	}
+
+	body.admin-bar &.sticky {
+
+		@include for-tablet-portrait-up {
+			top: unset;
+		}
+	}
+
+	html.navigation-open & {
+		background-color: var(--color-prussian-blue);
+
+		@include for-tablet-portrait-up {
+			background-color: unset;
+		}
+	}
+}
+
+.c-main-nav {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+
+	.c-header.sticky & {
+		height: 80px;
+	}
+}
+
+.c-menu-button {
+
+	@include reset_button_element;
+	cursor: pointer;
+	height: 30px;
+	width: 30px;
+
+	@include for-tablet-portrait-up {
+		display: none;
+	}
+}
+
+.c-menu-button__icon {
+	position: absolute;
+	right: var(--spacing-m);
+	width: 28px;
+	height: 4px;
+	background-color: var(--color-white);
+	transition: transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		display: block;
+		width: 28px;
+		height: 4px;
+		background-color: inherit;
+	}
+
+	&::before {
+		top: -10px;
+		transition: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+
+		html.navigation-open & {
+			top: 0;
+			transition: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+			opacity: 0;
+		}
+	}
+
+	&::after {
+		bottom: -10px;
+		transition: bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+		html.navigation-open & {
+			bottom: 0;
+			transition: bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+			transform: rotate(-90deg);
+		}
+	}
+
+	html.navigation-open & {
+		transition: transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+		transform: rotate(225deg);
+	}
+}
+
+.c-navigation {
+	align-items: center;
+	bottom: 0;
+	color: var(--color-white);
+	display: flex;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 152px;
+	visibility: hidden;
+	width: 100%;
+
+	@include for-tablet-portrait-up {
+		position: unset;
+		top: unset;
+		visibility: visible;
+		width: unset;
+	}
+
+	&__menu-wrapper {
+
+		@include reset_list_style;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-l);
+		padding-right: var(--spacing-l);
+		text-align: right;
+		text-transform: uppercase;
+
+		@include for-tablet-portrait-up {
+			flex-direction: row;
+			padding-right: unset;
+			text-align: left;
+		}
+	}
+
+	html.navigation-open & {
+		background-color: var(--color-prussian-blue);
+		display: unset;
+		visibility: visible;
+
+		@include for-tablet-portrait-up {
+			background-color: unset;
+		}
+	}
+
+	body.admin-bar & {
+		top: 185px;
+	}
+
+	.c-header.sticky & {
+		top: 80px;
+	}
+}
+
+html.navigation-open {
+	overflow: hidden;
+}

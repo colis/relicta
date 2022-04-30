@@ -14,7 +14,7 @@ HERO BLOCK
 
 	p {
 
-		@include reset-all;
+		@include reset_all;
 		font-weight: var(--font-weight-primary-black);
 		font-size: 48px;
 		line-height: 1.25 !important;

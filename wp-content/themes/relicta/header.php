@@ -28,15 +28,13 @@
 	<div id="site-wrapper" class="o-site-wrapper">
 
 		<header class="c-header">
-			<div class="c-main-nav__wrapper">
-				<div class="o-container">
-					<div class="c-main-nav">
-						<a href="<?php echo esc_url( home_url() ); ?>" class="c-logo"><?php the_custom_logo(); ?></a>
-						<?php
-							get_template_part( 'template-parts/header/menu-button' );
-							get_template_part( 'template-parts/header/navigation' );
-						?>
-					</div>
-				</div>
-			</div><!-- .c-main-nav__wrapper -->
+			<div class="c-main-nav o-container">
+				<a href="<?php echo esc_url( home_url() ); ?>" class="c-logo">
+					<?php echo relicta_get_icon_svg( 'logo', 130 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded SVG. ?>
+				</a>
+				<?php
+					get_template_part( 'template-parts/header/menu-button' );
+					get_template_part( 'template-parts/header/navigation' );
+				?>
+			</div><!-- .c-main-nav -->
 		</header><!-- .c-header -->

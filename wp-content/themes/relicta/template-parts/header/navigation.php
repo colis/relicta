@@ -8,7 +8,7 @@
 
 ?>
 
-<nav class="c-header__navigation c-navigation o-container">
+<nav class="c-header__navigation c-navigation">
 	<?php
 	wp_nav_menu(
 		[

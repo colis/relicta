@@ -60,19 +60,11 @@ if ( ! function_exists( 'relicta_setup' ) ) :
 		);
 
 		/**
-		 * Add support for core custom logo.
+		 * Remove support for core custom logo.
 		 *
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
-		add_theme_support(
-			'custom-logo',
-			[
-				'height'      => 240,
-				'width'       => 240,
-				'flex-width'  => false,
-				'flex-height' => false,
-			]
-		);
+		remove_theme_support( 'custom-logo' );
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );

@@ -21,6 +21,11 @@ define( 'RELICTA_URL', trailingslashit( get_stylesheet_directory_uri() ) );
  */
 
 /**
+ * SVG Icons class.
+ */
+require get_template_directory() . '/classes/class-svg-icons.php';
+
+/**
  * Setup the theme.
  */
 require get_template_directory() . '/inc/setup.php';
@@ -35,6 +40,10 @@ require RELICTA_DIR . '/inc/enqueues.php';
  */
 require get_template_directory() . '/inc/menus.php';
 
+/**
+ * SVG Icons related functions.
+ */
+require get_template_directory() . '/inc/icon-functions.php';
 
 /**
  * Custom content functions.
