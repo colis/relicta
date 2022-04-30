@@ -8,7 +8,7 @@
 let lastKnownScrollPosition = 0;
 let ticking = false;
 const header = document.querySelector('.c-header');
-const headerOffset = header.offsetTop;
+const headerOffset = header.offsetHeight;
 
 if ('loading' === document.readyState) {
 	// The DOM has not yet been loaded.
