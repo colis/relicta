@@ -1,0 +1,32 @@
+/* ==========================================================================
+GRAVITY FORMS
+========================================================================== */
+
+.gform_body {
+
+	.consent {
+		margin: 0 auto !important;
+	}
+}
+
+.gform_footer {
+	justify-content: center;
+
+	input[type="submit"] {
+
+		@include reset_appearance;
+		background-color: var(--color-mustard-yellow);
+		border: none;
+		color: var(--color-white);
+		cursor: pointer;
+		font-size: var(--font-size-h3-desktop);
+		min-width: 200px;
+		padding: var(--spacing-xs) var(--spacing-l);
+		text-transform: uppercase;
+
+		&:hover,
+		&:focus {
+			background-color: #c28f03;
+		}
+	}
+}

@@ -173,6 +173,7 @@ wp-content/themes/*
 !/wp-content/mu-plugins/1-loader.php
 /wp-content/plugins/*
 !/wp-content/plugins/relicta-*/
+!/wp-content/plugins/gravityforms/
 
 ########################################################
 # Add your project-specific ignore files here!
