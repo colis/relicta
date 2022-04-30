@@ -21,7 +21,7 @@ HEADER
 	}
 
 	html.navigation-open & {
-		background-color: var(--color-prussian-blue);
+		background-color: rgba(0, 52, 89, 0.9);
 
 		@include for-tablet-portrait-up {
 			background-color: unset;
@@ -102,7 +102,7 @@ HEADER
 	bottom: 0;
 	color: var(--color-white);
 	display: flex;
-	height: 100%;
+	height: 220px;
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -111,6 +111,7 @@ HEADER
 	width: 100%;
 
 	@include for-tablet-portrait-up {
+		height: unset;
 		position: unset;
 		top: unset;
 		visibility: visible;
@@ -137,10 +138,12 @@ HEADER
 	html.navigation-open & {
 		background-color: var(--color-prussian-blue);
 		display: unset;
+		opacity: 0.9;
 		visibility: visible;
 
 		@include for-tablet-portrait-up {
 			background-color: unset;
+			opacity: unset;
 		}
 	}
 
