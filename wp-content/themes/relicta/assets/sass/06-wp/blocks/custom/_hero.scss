@@ -2,7 +2,9 @@
 HERO BLOCK
 ========================================================================== */
 
-.hero {
+section.wp-block-group.hero {
+	margin-top: 0;
+	margin-bottom: 0;
 
 	.wp-block-cover {
 		min-height: 55vh;

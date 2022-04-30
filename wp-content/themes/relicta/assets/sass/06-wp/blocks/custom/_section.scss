@@ -3,8 +3,19 @@ SECTION BLOCK
 ========================================================================== */
 
 section.wp-block-group {
+	margin-top: var(--spacing-xxl);
+	margin-bottom: var(--spacing-xxl);
 
 	.wp-block-group__inner-container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-m);
+
+		h1,
+		p {
+
+			@include reset_all;
+		}
 
 		h1 {
 			font-size: 36px;
@@ -24,12 +35,8 @@ section.wp-block-group {
 			font-weight: var(--font-weight-primary-medium);
 			line-height: 1.5;
 
-			@include for-tablet-portrait-up {
-				font-size: var(--font-size-h1-mobile);
-			}
-
 			@include for-tablet-landscape-up {
-				font-size: var(--font-size-h1-desktop);
+				font-size: var(--font-size-h1-mobile);
 			}
 		}
 	}
