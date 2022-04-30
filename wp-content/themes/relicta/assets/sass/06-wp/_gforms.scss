@@ -4,6 +4,14 @@ GRAVITY FORMS
 
 .gform_body {
 
+	input[type="text"],
+	input[type="email"],
+	select,
+	textarea {
+		background-color: rgba(0, 126, 167, 0.3);
+		border: 1px solid rgba(0, 126, 167, 0.3);
+	}
+
 	.consent {
 		margin: 0 auto !important;
 	}
