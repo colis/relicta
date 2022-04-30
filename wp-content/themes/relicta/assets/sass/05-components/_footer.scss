@@ -1,3 +1,21 @@
 /* ==========================================================================
 FOOTER
 ========================================================================== */
+
+.c-footer {
+
+	@include font_prop_heading(4, "light");
+	border-top: 4px solid #efefef;
+	padding: var(--spacing-xs) 0;
+
+	&__info {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+
+		@include for-tablet-portrait-up {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+	}
+}
