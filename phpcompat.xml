@@ -23,6 +23,7 @@
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
 	<!-- Third-party plugins and themes. -->
+	<exclude-pattern>/plugins/cookie-law-info/*</exclude-pattern>
 	<exclude-pattern>/plugins/gravityforms/*</exclude-pattern>
 	<exclude-pattern>/plugins/query-monitor/*</exclude-pattern>
 	<exclude-pattern>/plugins/wordpress-seo/*</exclude-pattern>

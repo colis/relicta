@@ -53,3 +53,31 @@ function relicta_admin_styles() {
 	wp_enqueue_style( 'relicta-admin-styles' );
 }
 add_action( 'enqueue_block_editor_assets', 'relicta_admin_styles' );
+
+/**
+ * Enqueue Google Analytics.
+ */
+function relicta_google_analytics() {
+	$ga_measurement_id = 'UA-154682423-1';
+
+	wp_enqueue_script(
+		'relicta-ga',
+		esc_url( "https://www.googletagmanager.com/gtag/js?id={$ga_measurement_id}" ),
+		[],
+		RELICTA_THEME_VERSION,
+		false
+	);
+	?>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){window.dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', <?php echo wp_json_encode( $ga_measurement_id ); ?>);
+	</script>
+
+	<?php
+}
+add_action( 'wp_head', 'relicta_google_analytics' );
