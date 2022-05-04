@@ -4,7 +4,8 @@ COLORS UTILITIES
 
 @each $colorName, $colorHex in $colors {
 
-	.has-background {
+	.has-background,
+	.has-background-dim {
 
 		&.has-#{$colorName}-background-color {
 			background-color: $colorHex;
