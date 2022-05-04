@@ -3,6 +3,11 @@ LOGO
 ========================================================================== */
 
 .c-logo {
+	transform: scale(0.8);
+
+	@include for-tablet-landscape-up {
+		transform: scale(1);
+	}
 
 	.c-header.sticky & {
 
