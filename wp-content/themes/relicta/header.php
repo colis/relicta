@@ -29,7 +29,7 @@
 
 		<header class="c-header">
 			<div class="c-main-nav o-container">
-				<a href="<?php echo esc_url( home_url() ); ?>" class="c-logo">
+				<a href="<?php echo esc_url( home_url() ); ?>" class="c-logo" title="Relicta Bioplastics">
 					<?php echo relicta_get_icon_svg( 'logo', 130 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded SVG. ?>
 				</a>
 				<?php

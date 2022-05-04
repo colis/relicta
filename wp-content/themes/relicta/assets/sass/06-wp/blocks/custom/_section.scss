@@ -11,13 +11,13 @@ section.wp-block-group {
 		flex-direction: column;
 		gap: var(--spacing-m);
 
-		h1,
+		h2,
 		p {
 
 			@include reset_all;
 		}
 
-		h1 {
+		h2 {
 			font-size: 36px;
 			font-weight: var(--font-weight-primary-bold);
 
