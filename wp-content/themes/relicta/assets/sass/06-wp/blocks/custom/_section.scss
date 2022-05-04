@@ -62,7 +62,7 @@ section.wp-block-group {
 			left: 0;
 			position: absolute;
 			right: 0;
-			top: -30vw;
+			top: -25vw;
 
 			@include for-phone-up {
 				top: -40vw;
@@ -79,7 +79,8 @@ section.wp-block-group {
 
 		.wp-block-image {
 
-			@include reset_all;
+			@include grid_container;
+			margin-bottom: 0;
 		}
 	}
 }
