@@ -1,0 +1,93 @@
+# Copyright (C) 2022 Carmine Colicino
+# This file is distributed under the same license as the Relicta Core plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Relicta Core 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/relicta-core\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-05-05T10:21:49+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: relicta-core\n"
+
+#. Plugin Name of the plugin
+msgid "Relicta Core"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/colis/relicta"
+msgstr ""
+
+#. Description of the plugin
+msgid "Core functionality for the Relicta site."
+msgstr ""
+
+#. Author of the plugin
+msgid "Carmine Colicino"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/colis"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:58
+#: includes/classes/PostTypes/Award.php:59
+msgid "Awards"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:60
+msgid "All Awards"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:61
+msgid "View Awards"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:62
+msgid "Search Awards"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:63
+msgid "Award Archives"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:64
+msgid "Award Attributes"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:67
+#: includes/classes/PostTypes/Award.php:68
+msgid "Award"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:69
+msgid "Parent Award:"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:70
+msgid "Add New Award"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:71
+msgid "Add New"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:72
+msgid "New Award"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:73
+msgid "Edit Award"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:74
+msgid "Update Award"
+msgstr ""
+
+#: includes/classes/PostTypes/Award.php:75
+msgid "View Award"
+msgstr ""
