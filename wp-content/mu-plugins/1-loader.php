@@ -3,11 +3,11 @@
 defined( 'ABSPATH' ) || exit;
 
 // Composer autoloader -- must be first.
-if ( ! is_readable( ABSPATH . 'vendor/autoload.php' ) ) {
+if ( ! is_readable( ABSPATH . 'wp-content/vendor/autoload.php' ) ) {
 	// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- required for detecting broken deploys.
 	trigger_error( 'Cannot find Composer autoload.', E_USER_ERROR );
 }
-require_once ABSPATH . 'vendor/autoload.php';
+require_once ABSPATH . 'wp-content/vendor/autoload.php';
 
 // Load your mu-plugins here!
 $mu_plugins = [];
