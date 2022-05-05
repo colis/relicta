@@ -8,6 +8,10 @@ p {
 		display: none;
 	}
 
+	&.justify {
+		text-align: justify;
+	}
+
 	b,
 	strong {
 		font-weight: var(--font-weight-bold);

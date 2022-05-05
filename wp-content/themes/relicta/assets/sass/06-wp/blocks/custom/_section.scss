@@ -20,9 +20,11 @@ section.wp-block-group {
 		h2 {
 			font-size: 36px;
 			font-weight: var(--font-weight-primary-bold);
+			text-align: center;
 
 			@include for-tablet-portrait-up {
 				font-size: 64px;
+				text-align: left;
 			}
 
 			@include for-tablet-landscape-up {
