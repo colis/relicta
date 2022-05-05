@@ -24,7 +24,7 @@ GRAVITY FORMS
 	input[type="submit"] {
 
 		@include reset_appearance;
-		background-color: var(--color-mustard-yellow);
+		background-color: var(--color-deep-cerulean);
 		border: none;
 		color: var(--color-white);
 		cursor: pointer;
@@ -35,7 +35,7 @@ GRAVITY FORMS
 
 		&:hover,
 		&:focus {
-			background-color: #c28f03;
+			background-color: var(--color-prussian-blue);
 		}
 	}
 }
