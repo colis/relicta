@@ -31,6 +31,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: wp-content/
         server-dir: www.relictabioplastics.com/wp-content/
-        dry-run: true
         exclude: |
           themes/relicta/assets/**
