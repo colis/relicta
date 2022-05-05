@@ -26,6 +26,7 @@
 	<exclude-pattern>/plugins/cookie-law-info/*</exclude-pattern>
 	<exclude-pattern>/plugins/gravityforms/*</exclude-pattern>
 	<exclude-pattern>/plugins/query-monitor/*</exclude-pattern>
+	<exclude-pattern>/plugins/redirection/*</exclude-pattern>
 	<exclude-pattern>/plugins/wordpress-seo/*</exclude-pattern>
 
 	<!-- Other files and folders -->
