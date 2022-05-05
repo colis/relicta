@@ -2,18 +2,17 @@
 // TYPOGRAPHY
 // ==========================================================================
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,bold,black);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:light,regular,medium,bold);
 
 :root {
 	// Families
-	--font-family-primary: "Roboto", sans-serif;
+	--font-family-primary: "Montserrat", sans-serif;
 
 	// Weights
 	--font-weight-primary-light: 300;
 	--font-weight-primary-regular: 400;
 	--font-weight-primary-medium: 500;
 	--font-weight-primary-bold: 700;
-	--font-weight-primary-black: 900;
 
 	// Sizes
 

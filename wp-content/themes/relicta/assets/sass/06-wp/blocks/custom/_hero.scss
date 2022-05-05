@@ -17,7 +17,7 @@ section.wp-block-group.hero {
 	h1 {
 
 		@include reset_all;
-		font-weight: var(--font-weight-primary-black);
+		font-weight: var(--font-weight-primary-bold);
 		font-size: 48px;
 		line-height: 1.25 !important;
 
