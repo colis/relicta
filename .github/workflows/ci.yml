@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -19,9 +19,6 @@ jobs:
 
     - name: Build project dependencies
       run: npm run build-release
-
-    - name: Reset Git
-      run: git reset --hard
 
     - name: List output files
       run: ls
