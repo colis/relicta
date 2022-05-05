@@ -47,12 +47,12 @@ abstract class BaseCustomPostType implements Registrable {
 	 *
 	 * @return string Custom post type name.
 	 */
-	abstract protected function get_name() : string;
+	abstract protected function get_name(): string;
 
 	/**
 	 * Get the arguments that configure the custom post type.
 	 *
 	 * @return array Array of arguments.
 	 */
-	abstract protected function get_arguments() : array;
+	abstract protected function get_arguments(): array;
 }

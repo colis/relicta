@@ -21,7 +21,7 @@ class Award extends BaseCustomPostType {
 	 *
 	 * @return string Custom post type name.
 	 */
-	protected function get_name() : string {
+	protected function get_name(): string {
 		return self::NAME;
 	}
 
@@ -30,7 +30,7 @@ class Award extends BaseCustomPostType {
 	 *
 	 * @return array Array of arguments.
 	 */
-	protected function get_arguments() : array {
+	protected function get_arguments(): array {
 		$supports = [
 			'title',
 			'excerpt',
@@ -52,7 +52,7 @@ class Award extends BaseCustomPostType {
 	 *
 	 * @return array Array of labels.
 	 */
-	protected function get_labels() : array {
+	protected function get_labels(): array {
 		return [
 			// Plurals.
 			'name'              => __( 'Awards', 'relicta-core' ),
