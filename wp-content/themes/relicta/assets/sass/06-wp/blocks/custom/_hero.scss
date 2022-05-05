@@ -12,6 +12,11 @@ section.wp-block-group.hero {
 		@include for-tablet-landscape-up {
 			min-height: 100vh;
 		}
+
+		&__inner-container {
+			padding-top: 80px;
+			padding-bottom: 40px;
+		}
 	}
 
 	h1 {

@@ -33,8 +33,4 @@ jobs:
         server-dir: www.relictabioplastics.com/wp-content/
         dry-run: true
         exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          wp-content/themes/relicta/assets/**
-          wp-content/themes/plugins/relicta-core/
+          themes/relicta/assets/**
