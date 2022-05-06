@@ -39,6 +39,7 @@
 		"php": ">=7.4",
 		"colis/relicta-core": "*",
 		"wpackagist-plugin/cookie-law-info": "^2.1",
+		"wpackagist-plugin/imagify": "^1.10",
 		"wpackagist-plugin/redirection": "^5.2",
 		"wpackagist-plugin/wordpress-seo": "^18.7"
 	},
