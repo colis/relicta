@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9697f676a3d354b3f48dcf749b6242b1",
+    "content-hash": "6c0198119800c6b15337efa54b33e59f",
     "packages": [
         {
             "name": "colis/relicta-core",
@@ -178,6 +178,24 @@
                 }
             ],
             "time": "2022-04-13T09:13:00+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/aruba-hispeed-cache",
+            "version": "1.1.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/aruba-hispeed-cache/",
+                "reference": "tags/1.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.1.1.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/aruba-hispeed-cache/"
         },
         {
             "name": "wpackagist-plugin/cookie-law-info",
