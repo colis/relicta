@@ -81,3 +81,29 @@ function relicta_google_analytics() {
 	<?php
 }
 add_action( 'wp_head', 'relicta_google_analytics' );
+
+/**
+ * Defer scripts.
+ *
+ * @param string $tag    The <script> tag for the enqueued script.
+ * @param string $handle The script's registered handle.
+ * @param string $src    The script's source URL.
+ */
+function defer_scripts( $tag, $handle, $src ) {
+	$defer_list = [
+		'jquery-core',
+		'jquery-migrate',
+		'cookie-law-info',
+	];
+
+	if ( is_admin() ) {
+		return $tag;
+	}
+
+	if ( ! in_array( $handle, $defer_list, true ) ) {
+		return $tag;
+	}
+
+	return str_replace( "src='{$src}'", "src='{$src}' defer", $tag );
+}
+add_filter( 'script_loader_tag', 'defer_scripts', 10, 3 );
