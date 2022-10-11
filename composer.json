@@ -39,10 +39,10 @@
 		"php": ">=7.4",
 		"colis/relicta-core": "*",
 		"wpackagist-plugin/aruba-hispeed-cache": "^1.1",
-		"wpackagist-plugin/cookie-law-info": "^2.1",
-		"wpackagist-plugin/imagify": "^1.10",
+		"wpackagist-plugin/cookie-law-info": "^3.0",
+		"wpackagist-plugin/imagify": "^2.0",
 		"wpackagist-plugin/redirection": "^5.2",
-		"wpackagist-plugin/wordpress-seo": "^18.7"
+		"wpackagist-plugin/wordpress-seo": "^19.8"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
