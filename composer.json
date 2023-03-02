@@ -42,7 +42,7 @@
 		"wpackagist-plugin/cookie-law-info": "^3.0",
 		"wpackagist-plugin/imagify": "^2.0",
 		"wpackagist-plugin/redirection": "^5.2",
-		"wpackagist-plugin/wordpress-seo": "^19.8"
+		"wpackagist-plugin/wordpress-seo": "^20.2"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
