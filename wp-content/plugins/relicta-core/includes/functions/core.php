@@ -15,8 +15,8 @@ namespace RelictaCore\Core;
  * @return void
  */
 function setup() {
-	$n = function( $function ) {
-		return __NAMESPACE__ . "\\$function";
+	$n = function( $func ) {
+		return __NAMESPACE__ . "\\$func";
 	};
 
 	add_action( 'init', $n( 'i18n' ) );
