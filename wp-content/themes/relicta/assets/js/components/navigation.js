@@ -7,12 +7,12 @@
 
 let lastKnownScrollPosition = 0;
 let ticking = false;
-const header = document.querySelector('.c-header');
+const header = document.querySelector( '.c-header' );
 const headerOffset = header.offsetHeight;
 
-if ('loading' === document.readyState) {
+if ( 'loading' === document.readyState ) {
 	// The DOM has not yet been loaded.
-	document.addEventListener('DOMContentLoaded', initNavigation);
+	document.addEventListener( 'DOMContentLoaded', initNavigation );
 } else {
 	// The DOM has already been loaded.
 	initNavigation();
@@ -28,11 +28,11 @@ function initNavigation() {
  * Add event listener to the button that handles toggling the mobile menu.
  */
 function initNavToggle() {
-	const toggleButton = document.querySelector('.js-menu-button');
+	const toggleButton = document.querySelector( '.js-menu-button' );
 
-	toggleButton.addEventListener('click', () => {
+	toggleButton.addEventListener( 'click', () => {
 		toggleMainNavigation();
-	});
+	} );
 }
 
 /**
@@ -40,13 +40,13 @@ function initNavToggle() {
  */
 function initStickyToggle() {
 	toggleStickyNavigation();
-	document.addEventListener('scroll', toggleStickyNavigation);
+	document.addEventListener( 'scroll', toggleStickyNavigation );
 }
 
 function toggleMainNavigation() {
-	const html = document.querySelector('html');
+	const html = document.querySelector( 'html' );
 
-	if (html.classList.contains('navigation-open')) {
+	if ( html.classList.contains( 'navigation-open' ) ) {
 		disableMainNavigation();
 	} else {
 		enableMainNavigation();
@@ -54,33 +54,33 @@ function toggleMainNavigation() {
 }
 
 function enableMainNavigation() {
-	const html = document.querySelector('html');
-	const toggleButton = document.querySelector('.js-menu-button');
+	const html = document.querySelector( 'html' );
+	const toggleButton = document.querySelector( '.js-menu-button' );
 
-	html.classList.add('navigation-open');
-	toggleButton.setAttribute('aria-expanded', 'true');
+	html.classList.add( 'navigation-open' );
+	toggleButton.setAttribute( 'aria-expanded', 'true' );
 }
 
 function disableMainNavigation() {
-	const html = document.querySelector('html');
-	const toggleButton = document.querySelector('.js-menu-button');
+	const html = document.querySelector( 'html' );
+	const toggleButton = document.querySelector( '.js-menu-button' );
 
-	html.classList.remove('navigation-open');
-	toggleButton.setAttribute('aria-expanded', 'false');
+	html.classList.remove( 'navigation-open' );
+	toggleButton.setAttribute( 'aria-expanded', 'false' );
 }
 
 function toggleStickyNavigation() {
 	lastKnownScrollPosition = window.scrollY;
 
-	if (!ticking) {
-		window.requestAnimationFrame(() => {
-			if (lastKnownScrollPosition >= headerOffset) {
-				header.classList.add('sticky');
+	if ( ! ticking ) {
+		window.requestAnimationFrame( () => {
+			if ( lastKnownScrollPosition >= headerOffset ) {
+				header.classList.add( 'sticky' );
 			} else {
-				header.classList.remove('sticky');
+				header.classList.remove( 'sticky' );
 			}
 			ticking = false;
-		});
+		} );
 
 		ticking = true;
 	}
