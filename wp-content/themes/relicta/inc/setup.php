@@ -97,7 +97,7 @@ if ( ! function_exists( 'relicta_setup' ) ) :
 		$theme_json      = json_decode( $theme_json_file, true );
 
 		$gutenberg_palette = array_map(
-			function( $name, $hex_color ) {
+			function ( $name, $hex_color ) {
 					$slug = sanitize_title( $name );
 					$name = str_replace( '-', ' ', ucwords( $slug ) );
 

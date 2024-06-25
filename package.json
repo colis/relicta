@@ -19,7 +19,7 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:php": "composer run lint",
 		"lint-fix:php": "composer run lint-fix",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"lint-staged": {
 		"*.scss": [
@@ -37,12 +37,12 @@
 		"url": "https://github.com/colis/relicta"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.4",
-		"husky": "^8.0.3",
-		"lint-staged": "^13.2.2",
+		"@wordpress/scripts": "^28.1",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.7",
 		"node-sass": "^9.0.0",
 		"node-sass-json-vars": "^1.1.1",
-		"sass-loader": "^13.2.2"
+		"sass-loader": "^14.2.1"
 	},
 	"engines": {
 		"node": ">=14.0.0"
