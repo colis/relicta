@@ -54,6 +54,7 @@
 	<exclude-pattern>/db.php</exclude-pattern>
 	<exclude-pattern>/xmlrpc.php</exclude-pattern>
 	<exclude-pattern>/index.php</exclude-pattern>
+	<exclude-pattern>/local-xdebuginfo.php</exclude-pattern>
 	<exclude-pattern>/uploads/*</exclude-pattern>
 	<exclude-pattern>/images/*</exclude-pattern>
 	<exclude-pattern>/languages/*</exclude-pattern>
