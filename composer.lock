@@ -183,15 +183,15 @@
         },
         {
             "name": "wpackagist-plugin/aruba-hispeed-cache",
-            "version": "2.0.17",
+            "version": "2.0.19",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/aruba-hispeed-cache/",
-                "reference": "tags/2.0.17"
+                "reference": "tags/2.0.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.2.0.17.zip"
+                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.2.0.19.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -201,15 +201,15 @@
         },
         {
             "name": "wpackagist-plugin/cookie-law-info",
-            "version": "3.2.6",
+            "version": "3.2.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cookie-law-info/",
-                "reference": "tags/3.2.6"
+                "reference": "tags/3.2.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cookie-law-info.3.2.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/cookie-law-info.3.2.7.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -219,15 +219,15 @@
         },
         {
             "name": "wpackagist-plugin/imagify",
-            "version": "2.2.2",
+            "version": "2.2.3.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/imagify/",
-                "reference": "tags/2.2.2"
+                "reference": "tags/2.2.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/imagify.2.2.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/imagify.2.2.3.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -255,15 +255,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "23.6",
+            "version": "23.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/23.6"
+                "reference": "tags/23.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.23.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.23.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -807,12 +807,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "2133137c33fa898df70b5f879a65d83af4dbb97d"
+                "reference": "ffec7bfced474ed83c4e1b66225d37f84fdb65a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/2133137c33fa898df70b5f879a65d83af4dbb97d",
-                "reference": "2133137c33fa898df70b5f879a65d83af4dbb97d",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/ffec7bfced474ed83c4e1b66225d37f84fdb65a3",
+                "reference": "ffec7bfced474ed83c4e1b66225d37f84fdb65a3",
                 "shasum": ""
             },
             "require": {
@@ -866,7 +866,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-10-05T00:46:24+00:00"
+            "time": "2024-11-08T12:53:42+00:00"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
