@@ -183,15 +183,15 @@
         },
         {
             "name": "wpackagist-plugin/aruba-hispeed-cache",
-            "version": "2.0.19",
+            "version": "2.0.24",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/aruba-hispeed-cache/",
-                "reference": "tags/2.0.19"
+                "reference": "tags/2.0.24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.2.0.19.zip"
+                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.2.0.24.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -219,15 +219,15 @@
         },
         {
             "name": "wpackagist-plugin/imagify",
-            "version": "2.2.3.2",
+            "version": "2.2.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/imagify/",
-                "reference": "tags/2.2.3.2"
+                "reference": "tags/2.2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/imagify.2.2.3.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/imagify.2.2.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -255,15 +255,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "24.0",
+            "version": "24.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/24.0"
+                "reference": "tags/24.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -487,16 +487,16 @@
         },
         {
             "name": "phpcompatibility/phpcompatibility-wp",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibilityWP.git",
-                "reference": "01c1ff2704a58e46f0cb1ca9d06aee07b3589082"
+                "reference": "80ccb1a7640995edf1b87a4409fa584cd5869469"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityWP/zipball/01c1ff2704a58e46f0cb1ca9d06aee07b3589082",
-                "reference": "01c1ff2704a58e46f0cb1ca9d06aee07b3589082",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityWP/zipball/80ccb1a7640995edf1b87a4409fa584cd5869469",
+                "reference": "80ccb1a7640995edf1b87a4409fa584cd5869469",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-04-24T21:37:59+00:00"
+            "time": "2025-01-16T22:34:19+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -723,16 +723,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.11.1",
+            "version": "3.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "19473c30efe4f7b3cd42522d0b2e6e7f243c6f87"
+                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/19473c30efe4f7b3cd42522d0b2e6e7f243c6f87",
-                "reference": "19473c30efe4f7b3cd42522d0b2e6e7f243c6f87",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
+                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
                 "shasum": ""
             },
             "require": {
@@ -797,9 +797,13 @@
                 {
                     "url": "https://opencollective.com/php_codesniffer",
                     "type": "open_collective"
+                },
+                {
+                    "url": "https://thanks.dev/phpcsstandards",
+                    "type": "thanks_dev"
                 }
             ],
-            "time": "2024-11-16T12:02:36+00:00"
+            "time": "2025-01-23T17:04:15+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -807,12 +811,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "9f9726a01a886b3dcced5327390470a56314aa56"
+                "reference": "c028f329aadd97788288c5cb4d1884eca50b954d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/9f9726a01a886b3dcced5327390470a56314aa56",
-                "reference": "9f9726a01a886b3dcced5327390470a56314aa56",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/c028f329aadd97788288c5cb4d1884eca50b954d",
+                "reference": "c028f329aadd97788288c5cb4d1884eca50b954d",
                 "shasum": ""
             },
             "require": {
@@ -866,19 +870,19 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-12-02T08:21:11+00:00"
+            "time": "2024-12-27T12:57:17+00:00"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "3.17.0",
+            "version": "3.17.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/3.17.0"
+                "reference": "tags/3.17.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.17.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.17.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
