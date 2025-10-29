@@ -37,11 +37,11 @@
 		"url": "https://github.com/colis/relicta"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.15",
+		"@wordpress/scripts": "^30.26",
 		"husky": "^9.1.7",
-		"lint-staged": "^15.5.1",
+		"lint-staged": "^16.2.6",
 		"node-sass": "^9.0.0",
-		"sass-loader": "^16.0.5"
+		"sass-loader": "^16.0.6"
 	},
 	"engines": {
 		"node": ">=14.0.0"
