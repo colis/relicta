@@ -48,6 +48,7 @@
 	<exclude-pattern>/plugins/redirection/*</exclude-pattern>
 	<exclude-pattern>/plugins/wordpress-seo/*</exclude-pattern>
 	<exclude-pattern>/themes/twentytwentyfour/*</exclude-pattern>
+	<exclude-pattern>/themes/twentytwentyfive/*</exclude-pattern>
 
 	<!-- Other files and folders -->
 	<exclude-pattern>/*.asset.php</exclude-pattern>
