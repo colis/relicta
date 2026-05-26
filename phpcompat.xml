@@ -11,8 +11,8 @@
 
 	<rule ref="PHPCompatibilityWP" />
 
-	<!-- Require PHP 7.4+. -->
-	<config name="testVersion" value="7.4-" />
+	<!-- Require PHP 8.3+. -->
+	<config name="testVersion" value="8.3-" />
 
 	<!--
 	Exclusions.
