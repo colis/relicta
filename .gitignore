@@ -175,6 +175,7 @@ wp-content/themes/*
 /wp-content/plugins/*
 !/wp-content/plugins/relicta-*/
 !/wp-content/plugins/gravityforms/
+!/wp-content/plugins/gravityforms/vendor
 
 ########################################################
 # Add your project-specific ignore files here!
