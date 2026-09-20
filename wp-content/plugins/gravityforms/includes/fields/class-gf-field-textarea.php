@@ -46,7 +46,7 @@ class GF_Field_Textarea extends GF_Field {
 			'label_placement_setting',
 			'admin_label_setting',
 			'maxlen_setting',
-			'size_setting',
+			'textarea_height_setting',
 			'rules_setting',
 			'visibility_setting',
 			'duplicate_setting',
@@ -55,6 +55,7 @@ class GF_Field_Textarea extends GF_Field {
 			'description_setting',
 			'css_class_setting',
 			'rich_text_editor_setting',
+			'no_urls_setting',
 		);
 	}
 
@@ -78,7 +79,13 @@ class GF_Field_Textarea extends GF_Field {
 
 		$id            = intval( $this->id );
 		$field_id      = $is_entry_detail || $is_form_editor || $form_id == 0 ? "input_$id" : 'input_' . $form_id . "_$id";
-		$size          = $this->size;
+		if ( $this->textareaHeight ) {
+			$size = $this->textareaHeight;
+		} else if ( $this->size ) {
+			$size = $this->size;
+		} else {
+			$size = 'medium';
+		}
 		$class_suffix  = $is_entry_detail ? '_admin' : '';
 		$class         = $size . $class_suffix;
 		$class         = esc_attr( $class );
@@ -125,22 +132,38 @@ class GF_Field_Textarea extends GF_Field {
 				'textarea_name' => 'input_' . $id,
 				'wpautop' 		=> true,
 				'editor_class' 	=> $class,
-				'editor_height' => rgar( array( 'small' => 110, 'medium' => 180, 'large' => 280 ), $this->size ? $this->size : 'medium' ),
+				'editor_height' => rgar( array( 'small' => 110, 'medium' => 180, 'large' => 280 ), $size ),
 				'tabindex' 		=> $tabindex,
 				'media_buttons' => false,
 				'quicktags'     => false,
 				'tinymce'		=> array( 'init_instance_callback' =>  "function (editor) {
-												editor.on( 'keyup paste mouseover', function (e) {
-													var content = editor.getContent( { format: 'text' } ).trim();													
-													var textarea = jQuery( '#' + editor.id ); 
-													textarea.val( content ).trigger( 'keyup' ).trigger( 'paste' ).trigger( 'mouseover' );													
-												
-													
-												});}" ),
+					editor.on( 'keyup paste mouseover', function (e) {
+						var content = editor.getContent( { format: 'text' } ).trim();													
+						var textarea = jQuery( '#' + editor.id ); 
+						textarea.val( content ).trigger( 'keyup' ).trigger( 'paste' ).trigger( 'mouseover' );		
+					} );
+					editor.on( 'focus', function () {
+						var iframe = editor.iframeElement;
+						if ( iframe ) {
+							iframe.classList.add( 'wp-editor-iframe-active' );
+						}
+					} );
+			        editor.on( 'blur', function () {
+			            var iframe = editor.iframeElement;
+			            if ( iframe ) {
+			                iframe.classList.remove( 'wp-editor-iframe-active' );
+			            }
+			        } );
+				}" ),
 			), $this, $form, $entry );
 
 			$editor_settings = apply_filters( sprintf( 'gform_rich_text_editor_options_%d', $form['id'] ),               $editor_settings, $this, $form, $entry );
 			$editor_settings = apply_filters( sprintf( 'gform_rich_text_editor_options_%d_%d', $form['id'], $this->id ), $editor_settings, $this, $form, $entry );
+
+			// Add 'textarea' to the list of tags that should not be texturized
+			if ( ! has_filter( 'no_texturize_tags', array( __CLASS__, 'remove_textarea_texturize' ) ) ) {
+				add_filter( 'no_texturize_tags', array( __CLASS__, 'remove_textarea_texturize' ) );
+			}
 
 			if ( ! has_action( 'wp_tiny_mce_init', array( __class__, 'start_wp_tiny_mce_init_buffer' ) ) ) {
 				add_action( 'wp_tiny_mce_init', array( __class__, 'start_wp_tiny_mce_init_buffer' ) );
@@ -163,8 +186,7 @@ class GF_Field_Textarea extends GF_Field {
 			if ( $this->is_form_editor() ) {
 				$display     = $this->useRichTextEditor ? 'block' : 'none';
 				$input_style = $this->useRichTextEditor ? 'style="display:none;"' : '';
-				$size        = $this->size ? $this->size : 'medium';
-				$input       = "<div id='{$field_id}_rte_preview' class='gform-rte-preview {$size}' style='display:{$display}'>
+				$input       = "<div id='{$field_id}_rte_preview' class='gform-rte-preview gform-theme__disable {$size}' style='display:{$display}'>
 						<ul class='rte_preview_header'>
 							<li class='icon'><svg width='24' height='24' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg'><path d='M7.761 19c-.253 0-.44-.06-.56-.18-.12-.12-.18-.307-.18-.56l-.02-12.52c0-.267.08-.457.2-.57.12-.113.307-.17.56-.17h5.019c1.56 0 2.723.317 3.49.95.767.633 1.15 1.497 1.15 2.59 0 .667-.21 1.283-.63 1.85-.42.567-.937.963-1.55 1.19l.02.08c.387.067.793.247 1.22.54.427.293.787.677 1.08 1.15.293.473.44 1.01.44 1.61 0 1.32-.427 2.323-1.28 3.01-.853.687-2.12 1.03-3.8 1.03H7.761zm4.969-8.26c.687 0 1.237-.17 1.65-.51.414-.34.621-.77.621-1.29 0-1.147-.757-1.72-2.271-1.72H9.28v3.52h3.45zm.59 6.02c.725 0 1.283-.17 1.674-.51.39-.34.586-.823.586-1.45 0-.587-.223-1.037-.67-1.35-.446-.313-1.088-.47-1.925-.47H9.28v3.78h4.04z' fill='#555d66' stroke='none' stroke-width='1' fill-rule='evenodd'/></svg></li>
 							<li class='icon'><svg width='24' height='24' viewBox='0 0 24 24' ersion='1.1' xmlns='http://www.w3.org/2000/svg'><path d='M16.746 4.723l-.176.84h-.263c-.638 0-1.097.12-1.377.36-.28.242-.47.6-.567 1.075l-2.07 9.805c-.059.28-.088.465-.088.556 0 .534.482.801 1.445.801h.254l-.175.84h-5.82l.155-.84h.264c1.107 0 1.761-.478 1.963-1.435l2.08-9.805c.052-.247.078-.433.078-.557 0-.534-.482-.8-1.445-.8h-.254l.176-.84h5.82z' fill='#555d66' stroke='none' stroke-width='1' fill-rule='evenodd'/></svg></li>
@@ -185,7 +207,7 @@ class GF_Field_Textarea extends GF_Field {
 
 		}
 
-		return sprintf( "<div class='ginput_container ginput_container_textarea'>%s</div>", $input );
+		return sprintf( "<div class='ginput_container ginput_container_textarea'%s>%s</div>", GF_Field_Text::get_text_counter_attrs( $this ), $input );
 	}
 
 	public function validate( $value, $form ) {
@@ -194,13 +216,12 @@ class GF_Field_Textarea extends GF_Field {
 		}
 
 		if ( $this->useRichTextEditor ) {
-			$value = wp_specialchars_decode( $value );
+			// Get the plain text value from the RTE HTML. Mirrors: editor.getContent({ format: 'text' }).trim()
+			$value = $this->rte_plain_text_value( $value );
+		} else {
+			// Normalize new lines so that they are not counted as 2 characters.
+			$value = str_replace( "\r", '', $value );
 		}
-
-		// Clean the string of characters not counted by the textareaCounter plugin.
-		$value = strip_tags( $value );
-		$value = str_replace( "\r", '', $value );
-		$value = trim( $value );
 
 		if ( GFCommon::safe_strlen( $value ) > $this->maxLength ) {
 			$this->failed_validation  = true;
@@ -208,9 +229,48 @@ class GF_Field_Textarea extends GF_Field {
 		}
 	}
 
+	/**
+	 * Get TinyMCE "plain text" value for submitted HTML.
+	 * Mirrors JS code: editor.getContent({ format: 'text' }).trim().length
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param string $html The HTML content from the RTE.
+	 *
+	 * @return string The plain text value of the specified $html string.
+	 */
+	public function rte_plain_text_value( $html ) {
+
+		// 1 - Strip all tags (scripts/styles too)
+		$text = wp_strip_all_tags( $html, true );
+
+		// 2 - Decode entities (&amp;, &nbsp;, etc.)
+		$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
+
+		// 3 - Normalize non-breaking spaces to regular spaces.
+		$text = preg_replace( '/\x{00A0}/u', ' ', $text ); // NBSP → space
+
+		return $text;
+	}
+
 	public static function start_wp_tiny_mce_init_buffer() {
 		ob_start();
 		add_action( 'after_wp_tiny_mce', array( __class__, 'end_wp_tiny_mce_init_buffer' ), 1 );
+	}
+
+	/**
+	 * Adds 'textarea' to the list of tags that should not be texturized.
+	 *
+	 * @since 2.9.1
+	 *
+	 * @param array $tags The list of tags that should not be texturized.
+	 *
+	 * @return array The updated list of tags.
+	 */
+	public static function remove_textarea_texturize( $tags ) {
+		$tags[] = 'textarea';
+
+		return $tags;
 	}
 
 	public static function end_wp_tiny_mce_init_buffer() {
@@ -241,7 +301,7 @@ class GF_Field_Textarea extends GF_Field {
 
 		}
 
-		echo $script;
+		echo $script; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 
@@ -296,15 +356,18 @@ class GF_Field_Textarea extends GF_Field {
 	 * Format the entry value for display on the entry detail page and for the {all_fields} merge tag.
 	 * Return a value that's safe to display for the context of the given $format.
 	 *
-	 * @param string|array $value The field value.
-	 * @param string $currency The entry currency code.
-	 * @param bool|false $use_text When processing choice based fields should the choice text be returned instead of the value.
-	 * @param string $format The format requested for the location the merge is being used. Possible values: html, text or url.
-	 * @param string $media The location where the value will be displayed. Possible values: screen or email.
+	 * @since 1.9
+	 * @since 2.9.29 Changed the second parameter $currency (string) to $entry (array).
+	 *
+	 * @param string|array $value    The field value.
+	 * @param array        $entry    The entry.
+	 * @param bool|false   $use_text When processing choice based fields should the choice text be returned instead of the value.
+	 * @param string       $format   The format requested for the location the merge is being used. Possible values: html, text or url.
+	 * @param string       $media    The location where the value will be displayed. Possible values: screen or email.
 	 *
 	 * @return string
 	 */
-	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+	public function get_value_entry_detail( $value, $entry = array(), $use_text = false, $format = 'html', $media = 'screen' ) {
 
 		if ( $format === 'html' ) {
 
@@ -316,8 +379,7 @@ class GF_Field_Textarea extends GF_Field {
 				$return = nl2br( $value );
 
 			} else {
-				// The value contains HTML but the value was sanitized before saving.
-				$return = wpautop( $value );
+				$return = wpautop( wp_kses( $value, $this->get_entry_allowed_html() ) );
 			}
 		} else {
 			$return = $value;
@@ -359,8 +421,7 @@ class GF_Field_Textarea extends GF_Field {
 				// Run nl2br() to preserve line breaks when auto-formatting is disabled on notifications/confirmations.
 				$return = nl2br( $return );
 			} else {
-				// The value contains HTML but the value was sanitized before saving.
-				$return = wpautop( $raw_value );
+				$return = wpautop( wp_kses( $raw_value, $this->get_entry_allowed_html( $allowable_tags ) ) );
 			}
 		} else {
 			$return = $value;

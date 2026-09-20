@@ -8,7 +8,6 @@ function initLayoutEditor( $ ) {
 	 * @returns {jQuery}
 	 */
 	$.fn.setGroupId = function ( groupId ) {
-
 		this.attr( 'data-groupId', groupId );
 
 		this.each( function () {
@@ -169,7 +168,19 @@ function initLayoutEditor( $ ) {
 	} );
 
 	// Clear field selection when clicking off of any field.
-	$editorContainer.on( 'click', function () {
+	// Track mousedown target to prevent clearing selection when user clicks
+	// inside a flyout and drags to release over the editor.
+	var mousedownTarget = null;
+	$editorContainer.on( 'mousedown', function ( event ) {
+		mousedownTarget = event.target;
+	} );
+	$editorContainer.on( 'click', function ( event ) {
+		// Don't clear if mousedown originated inside any flyout
+		if ( mousedownTarget && $( mousedownTarget ).closest( '.gform-flyout, [id$="_flyout_container"]' ).length ) {
+			mousedownTarget = null;
+			return;
+		}
+		mousedownTarget = null;
 		clearFieldSelection();
 	} );
 
@@ -184,7 +195,7 @@ function initLayoutEditor( $ ) {
 			$field.setGroupId( getGroupId() );
 
 			// If the submit button is inline, move it back to its own row
-			if( jQuery('#field_submit').data( 'field-position' ) == 'inline' ) {
+			if( jQuery('#field_submit').attr( 'data-field-position' ) == 'inline' ) {
 				moveButtonToBottom();
 			}
 
@@ -266,22 +277,14 @@ function initLayoutEditor( $ ) {
 		initElement( $( '#field_' + fieldId ) );
 	} );
 
-		gform.addAction( 'gform_form_saving_action_element_after_reload', function( form, event, newElement, elementReloadId, existingElement ) {
-			if ( $( newElement ).hasClass( 'gfield' ) ) {
-				initElement( $( '[data-js-reload="' + elementReloadId + '"]' ) );
-			}
-
-			if ( $( newElement ).hasClass( 'editor-sidebar' ) ) {
-				initFieldButtons( $( fieldButtonsSelector ) );
-			}
-
-		} );
-
-		gform.addAction( 'gform_form_saving_action_editor_has_new_components', function( form, event, newElement, currentSidebar, newSidebar ) {
-			initFieldButtons( $( fieldButtonsSelector ) );
-		} );
+	gform.addAction( 'gform_after_change_input_type', function( fieldId ) {
+		initElement( $( '#field_' + fieldId ) );
+	} );
 
 	gform.addAction( 'gform_before_get_field_markup', function( form, field, index ) {
+		if ( gf_vars['isRepeaterDrop'] ) {
+			return;
+		}
 		addFieldPlaceholder( field, index );
 	} );
 
@@ -408,20 +411,26 @@ function initLayoutEditor( $ ) {
 					$elem.addClass( 'placeholder' );
 				},
 				drag: function( event, ui ) {
-					// Match the helper to the current elements size.
-					ui.helper
-						.width( $elem.width() )
-						.height( $elem.height() )
-						// Firefox has trouble positioning the dragged element when it still has it's grid-column property set.
-						.setGridColumnSpan( null );
-
-					if ( ! gform.tools.isRtl() ) {
-						helperLeft = ui.position.left;
-					} else {
-						helperLeft = ui.position.left + ( ui.helper.outerWidth() );
+					// When form has no fields, there is only one place the field can be dragged...
+					if ( ! form.fields.length ) {
+						return;
 					}
 
-					handleDrag( event, ui, ui.position.top, helperLeft );
+					// Do not show form-level drop indicator if over a repeater.
+					var repeater = document.querySelector( '[data-is-over-repeater="true"]' );
+					if ( repeater ) {
+						$indicator( false ).remove();
+						return;
+					}
+
+					/**
+					 * New field buttons are dragged relative to #wpbody so their position needs to be adjusted to work
+					 * the same way as dragging an existing field (which is relative to #gform_fields).
+					 */
+					var helperTop = ui.position.top - 0 + ( ui.helper.outerHeight() / 2 ),
+						helperLeft = ui.position.left - 0 + ( ui.helper.outerWidth() / 2 );
+
+					handleDrag( event, ui, helperTop, helperLeft );
 				},
 				stop: function( event, ui ) {
 					$container.removeClass( 'dragging' );
@@ -631,7 +640,7 @@ function initLayoutEditor( $ ) {
 	 * @since 2.6
 	 */
 	function setSubmitButtonGroup() {
-		if ( $( '#field_submit' ).data( 'field-position') === 'inline' ) {
+		if ( $( '#field_submit' ).attr( 'data-field-position') === 'inline' ) {
 			// Find the last group id.
 			var lastGroup = jQuery( '#field_submit' ).prev().attr( 'data-groupid' );
 			// Move the submit button to the group.
@@ -671,6 +680,8 @@ function initLayoutEditor( $ ) {
 						return false;
 					}
 
+					ui.helper.addClass( 'gform-theme__disable' );
+
 					// Match the helper to the current elements size.
 					ui.helper
 						.width( $( this ).width() )
@@ -679,7 +690,6 @@ function initLayoutEditor( $ ) {
 					$container.addClass( 'dragging' );
 					$elem = $( this ).clone();
 					$elem.addClass( 'placeholder' );
-
 					$( this ).addClass( 'fieldPlaceholder' );
 				},
 				drag: function( event, ui ) {
@@ -688,28 +698,71 @@ function initLayoutEditor( $ ) {
 						return;
 					}
 
+					// Do not show form-level drop indicator if over a repeater.
+					// getRepeaterAtCoordinates needs coordinates relative to the document
+					var helperCenterX = ui.offset.left + ( ui.helper.width() / 2 );
+					var helperCenterY = ui.offset.top + ( ui.helper.height() / 2 );
+					var repeater = getRepeaterAtCoordinates( helperCenterX, helperCenterY );
+					if ( repeater ) {
+						$indicator( false ).remove();
+						return;
+					}
+
 					/**
-					 * New field buttons are dragged relative to #wpbody so their position needs to be adjusted to work the
+					 * New field buttons are dragged relative to #wpbody so their position needs to be adjusted to work
 					 * the same way as dragging an existing field (which is relative to #gform_fields).
 					 */
 					var helperTop = ui.position.top - 0 + ( ui.helper.outerHeight() / 2 ),
 						helperLeft = ui.position.left - 0 + ( ui.helper.outerWidth() / 2 );
-
 					handleDrag( event, ui, helperTop, helperLeft );
-
 				},
 				stop: function( event, ui ) {
+					var isAddingField = false;
+
+					// Use the helper's center point for more accurate detection
+					var helperCenterX = ui.offset.left + (ui.helper.width() / 2);
+					var helperCenterY = ui.offset.top + (ui.helper.height() / 2);
+					var repeater = getRepeaterAtCoordinates( helperCenterX, helperCenterY );
+
+					// Removing these classes after calling getRepeaterAtCoordinates because this causes layout changes that affect its result
 					$( this ).removeClass( 'fieldPlaceholder' );
 					$editorContainer.removeClass( 'droppable' );
 					$container.removeClass( 'dragging' );
+					ui.helper.removeClass( 'gform-theme__disable' );
 
-					var isAddingField = false;
+					// Defer to Repeater field logic if we are dropping on a repeater.
+					if ( repeater ) {
+						var fieldIndex = repeater.dataset.repeaterInsertIndex || 0;
+						var repeaterFieldId = repeater.dataset.repeaterFieldId || 0;
+						var repeaterFieldContainer = document.getElementById( 'field_' + repeaterFieldId );
+
+						if ( repeaterFieldContainer ) {
+							gf_vars.isRepeaterDrop = {
+								fieldIndex: fieldIndex,
+								parent: repeaterFieldContainer,
+							};
+							isAddingField = addField( ui.helper.data( 'type' ) );
+						}
+
+						if ( ! isAddingField ) {
+							$indicator( false ).remove();
+							$elem.remove();
+							$elem = null;
+						}
+
+						$( this ).attr( 'title', $( this ).attr( 'data-description' ) );
+						return;
+					}
 
 					// Make sure the *entire* button has been dragged into the fields area before we add a field.
 					if ( ! form.fields.length && isNoFieldsDrop ) {
 						isNoFieldsDrop = false;
+						// @AARON: we'll obviously need this and to conditionally do it
+						// if we aren't adding to a repeater. I can help with this of course.
 						isAddingField = addField( ui.helper.data( 'type' ) );
 					} else if ( form.fields.length && $indicator( false ).data( 'target' ) ) {
+						// @AARON: we'll obviously need this and to conditionally do it
+						// if we aren't adding to a repeater. I can help with this of course.
 						isAddingField = addField( ui.helper.data( 'type' ) );
 					}
 
@@ -740,16 +793,40 @@ function initLayoutEditor( $ ) {
 
 		$elements().removeClass( 'hovering' );
 
-		if ( ! isInEditorArea( helperLeft, helperTop ) ) {
+		var isCompactView = $( '.gform-compact-view' ).length > 0;
+
+		// we need pass the UI Helper center coordinates to isOverRepeaterField(), not its top-left corner coords
+		var helperCenterX = ui.offset.left + (ui.helper.width() / 2);
+		var helperCenterY = ui.offset.top + (ui.helper.height() / 2);
+
+		if ( ! isInEditorArea( helperLeft, helperTop, isCompactView ) ) {
 			$indicator( false ).remove();
 			return;
+		}
+
+		if ( isOverRepeaterField( helperCenterX, helperCenterY ) ) {
+			$indicator( false ).remove();
+			return;
+		}
+
+		// drop indicator is a different distance from field in compact view.
+		if ( isCompactView ) {
+			var topDistanceAllFields = -9;
+			var topDistance = 9;
+			var bottomDistance = 5;
+			var bottomDistanceAllFields = 5;
+		} else {
+			var topDistanceAllFields = -10;
+			var topDistance = 10;
+			var bottomDistance = 0;
+			var bottomDistanceAllFields = 0;
 		}
 
 		// Check if field is dragged *above* all other fields.
 		if ( helperTop < 0 ) {
 			$indicator()
 				.css( {
-					top: -30,
+					top: topDistanceAllFields,
 					left: 0,
 					height: '4px',
 					width: $container.outerWidth()
@@ -765,7 +842,7 @@ function initLayoutEditor( $ ) {
 			if ( $elements().last().data( 'field-class' ) !== 'gform_editor_submit_container' && $elements().last().prev().data( 'field-class' ) !== 'gform_editor_submit_container' ) {
 				$indicator()
 					.css( {
-						top: $container.outerHeight() - 14,
+						top: $container.outerHeight() - bottomDistanceAllFields,
 						left: 0,
 						height: '4px',
 						width: $container.outerWidth()
@@ -783,6 +860,11 @@ function initLayoutEditor( $ ) {
 			.not( this )
 			.each( function() {
 
+				// Column system is buggy within Repeater fields, disabling it for now.
+				if ( this.closest( '.gfield--type-repeater' ) ) {
+					return;
+				}
+
 				var $target = $( this ),
 					sibPos = $target.position(),
 					sibArea = {
@@ -793,6 +875,10 @@ function initLayoutEditor( $ ) {
 					};
 
 				if ( ! isInArea( helperLeft, helperTop, sibArea ) ) {
+					return;
+				}
+
+				if ( isOverRepeaterField( helperCenterX, helperCenterY ) ) {
 					return;
 				}
 
@@ -847,15 +933,6 @@ function initLayoutEditor( $ ) {
 					where: where,
 					target: $target
 				} );
-
-				// drop indicator is a different distance from field in compact view.
-				if ( $target.parents( '.gform-compact-view' ).length > 0 ) {
-					var topDistance = 10;
-					var bottomDistance = 6;
-				} else {
-					var topDistance = 30;
-					var bottomDistance = 26;
-				}
 
 				// Where on the child field has the helper been dragged?
 				switch ( where ) {
@@ -984,11 +1061,11 @@ function initLayoutEditor( $ ) {
 	 *
 	 * @param {number} x The left position of the coordinate.
 	 * @param {number} y The top position of the coordinate.
+	 * @param {boolean} isCompactView Whether or not the form editor is in compact view.
 	 *
 	 * @returns {boolean}
 	 */
-	function isInEditorArea( x, y ) {
-
+	function isInEditorArea( x, y, isCompactView = false ) {
 		if ( ! gform.tools.isRtl() ) {
 			var editorOffsetLeft = $editorContainer.offset().left;
 		} else {
@@ -999,13 +1076,84 @@ function initLayoutEditor( $ ) {
 			offsetLeft = containerOffset.left - editorOffsetLeft,
 			buttonWidth = $button.outerWidth() || null,
 			editorArea = {
-				top: -offsetTop + buttonWidth,
+				top: isCompactView ? -offsetTop : -offsetTop + buttonWidth,
 				right: -offsetLeft + $editorContainer.outerWidth() - $sidebar.outerWidth() - buttonWidth,
 				bottom: -offsetTop + $editorContainer.outerHeight(),
 				left: -offsetLeft,
 			};
 
 		return y > editorArea.top && y < editorArea.bottom && x > editorArea.left && x < editorArea.right;
+	}
+
+	function isOverRepeaterField( x, y ) {
+		var repeaters = Array.from( document.querySelectorAll( '.gfield--type-repeater' ) );
+
+		if ( ! repeaters.length ) {
+			return false;
+		}
+
+		var isRepeater = false;
+
+		repeaters.forEach( function( repeater ) {
+			// Instead of using the entire repeater field bounds, check if we're over
+			// the actual sortable list area which handles its own drop logic
+			var sortableList = repeater.querySelector( '.gform-sortable-list' );
+			if ( ! sortableList ) {
+				return;
+			}
+
+			var offsets = sortableList.getBoundingClientRect();
+
+			if ( x > offsets.left && x < offsets.right && y > offsets.top && y < offsets.bottom ) {
+				isRepeater = true;
+				return;
+			}
+		});
+
+		return isRepeater;
+	}
+
+	/**
+	 * Get the specific repeater element at the given coordinates.
+	 * This function ensures we get the correct repeater when multiple repeaters exist.
+	 *
+	 * @param {number} x The x coordinate.
+	 * @param {number} y The y coordinate.
+	 *
+	 * @returns {Element|null} The repeater element or null if none found.
+	 */
+	function getRepeaterAtCoordinates( x, y ) {
+		// Only look for repeaters that are actively receiving a drag
+		var repeaters = Array.from( document.querySelectorAll( '.gform-sortable-list[data-is-over-repeater="true"]' ) );
+
+		if ( ! repeaters.length ) {
+			return null;
+		}
+
+		// Find all repeaters that contain the coordinates
+		var matchingRepeaters = [];
+		for ( var i = 0; i < repeaters.length; i++ ) {
+			var repeater = repeaters[i];
+			var rect = repeater.getBoundingClientRect();
+
+			if ( x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom ) {
+				matchingRepeaters.push( repeater );
+			}
+		}
+
+		if ( matchingRepeaters.length === 0 ) {
+			return null;
+		}
+
+		// Return the innermost repeater by checking which one is nested deepest
+		var innermostRepeater = matchingRepeaters[0];
+		for ( var j = 1; j < matchingRepeaters.length; j++ ) {
+			if ( innermostRepeater.contains( matchingRepeaters[j] ) ) {
+				innermostRepeater = matchingRepeaters[j];
+			}
+		}
+
+		return innermostRepeater;
 	}
 
 	/**
