@@ -6,7 +6,7 @@ gform.addAction( 'gform_input_change', function( elem, formId, fieldId ) {
 		return;
 	}
 	var dependentFieldIds = rgars( gf_form_conditional_logic, [ formId, 'fields', gformExtractFieldId( fieldId ) ].join( '/' ) );
-	if( dependentFieldIds ) {
+	if( dependentFieldIds.length ) {
 		gf_apply_rules( formId, dependentFieldIds );
 	}
 }, 10 );
@@ -23,15 +23,24 @@ function gf_apply_rules(formId, fields, isInit){
 		gf_apply_field_rule(formId, fields[i], isInit, function(){
 			var is_last_field = ( i >= fields.length - 1 );
 			if( is_last_field ) {
+
+				// Gather the fields that are dependents of the processed fields (inside pages/sections).
+				var dependentFields = [];
+				var dependents = window["gf_form_conditional_logic"][formId]["dependents"][fields[i]];
+				if ( dependents ) {
+					dependents.forEach( function ( dependentFieldId ) {
+						if ( dependentFields.indexOf( dependentFieldId ) === -1 ) {
+							dependentFields.push( dependentFieldId );
+						}
+					});
+				}
+
 				jQuery(document).trigger('gform_post_conditional_logic', [formId, fields, isInit]);
 				gform.utils.trigger( {
 					event: 'gform/conditionalLogic/applyRules/end',
 					native: false,
-					data: { formId: formId, fields: fields, isInit: isInit },
+					data: { formId: formId, fields: fields, dependentFields: dependentFields, isInit: isInit },
 				} );
-				if(window["gformCalculateTotalPrice"]){
-					window["gformCalculateTotalPrice"](formId);
-				}
 			}
 		});
 	}
@@ -167,7 +176,7 @@ function gf_is_match_checkable( $inputs, rule, formId, fieldId ) {
 	$inputs.each( function() {
 
 		var $input           = jQuery( this ),
-			fieldValue       = gf_get_value( $input.val() ),
+			fieldValue       = gf_get_value( $input.val(), $input ),
 			isRangeOperator  = jQuery.inArray( rule.operator, [ '<', '>' ] ) !== -1,
 			isStringOperator = jQuery.inArray( rule.operator, [ 'contains', 'starts_with', 'ends_with' ] ) !== -1;
 
@@ -217,16 +226,29 @@ function gf_is_checkable_empty( $inputs ) {
 
 function gf_is_match_default( $input, rule, formId, fieldId ) {
 
-	var val           = $input.val(),
-		values        = ( val instanceof Array ) ? val : [ val ], // transform regular value into array to support multi-select (which returns an array of selected items)
+	var val = $input.val();
+	if ( val === undefined ) {
+		val = [];
+	}
+
+	var values        = ( val instanceof Array ) ? val : [ val ], // transform regular value into array to support multi-select (which returns an array of selected items)
 		matchCount    = 0,
 		valuesLength  = Math.max( values.length, 1 ); // jQuery 3.0: Make sure our length is at least 1 so that the following loop fires.
 
+	// Back-compat for rules based on the address field country input that are still using the country name instead of the code; gets the code from the default countries list in gf_global.
+	if ( rule.fieldId === `${ fieldId }.6` && rule.value.length > 2 && $input.closest( '.ginput_container_address' ).length === 1 && val.length === 2 ) {
+		const ruleValueLowerCase = rule.value.toLowerCase();
+
+		rule.value = Object.entries( window.gf_global?.countries || {} ).find(
+			( [ code, name ] ) => name.toLowerCase() === ruleValueLowerCase
+		)?.[ 0 ] || rule.value;
+	}
+
 	for( var i = 0; i < valuesLength; i++ ) {
 
-		// fields with pipes in the value will use the label for conditional logic comparison
-		var hasLabel   = values[i] ? values[i].indexOf( '|' ) >= 0 : true,
-			fieldValue = gf_get_value( values[i] );
+		var isPriceField = $input.closest( '.gfield_price' ).length > 0,
+			hasLabel       = ! values[i] || ( isPriceField && values[i].indexOf( '|' ) >= 0 ),
+			fieldValue     = gf_get_value( values[i], $input );
 
 		var fieldNumberFormat = gf_get_field_number_format( rule.fieldId, formId, 'value' );
 		if( fieldNumberFormat && ! hasLabel ) {
@@ -255,7 +277,7 @@ function gf_format_number( value, fieldNumberFormat ) {
 	decimalSeparator = '.';
 
 	if( fieldNumberFormat == 'currency' ) {
-		decimalSeparator = gformGetDecimalSeparator( 'currency' );
+		decimalSeparator = gform.Currency.getDecimalSeparator( 'currency' );
 	} else if( fieldNumberFormat == 'decimal_comma' ) {
 		decimalSeparator = ',';
 	} else if( fieldNumberFormat == 'decimal_dot' ) {
@@ -263,7 +285,7 @@ function gf_format_number( value, fieldNumberFormat ) {
 	}
 
 	// transform to a decimal dot number
-	value = gformCleanNumber( value, '', '', decimalSeparator );
+	value = gform.Currency.cleanNumber( value, '', '', decimalSeparator );
 
 	/**
 	 * Looking at format specified by wp locale creates issues. When performing conditional logic, all numbers will be formatted to decimal dot and then compared that way. AC
@@ -292,7 +314,7 @@ function gf_try_convert_float(text){
 	var format = 'decimal_dot';
 	if( gformIsNumeric( text, format ) ) {
 		var decimal_separator = format == "decimal_comma" ? "," : ".";
-		return gformCleanNumber( text, "", "", decimal_separator );
+		return gform.Currency.cleanNumber( text, "", "", decimal_separator );
 	}
 
 	return text;
@@ -315,14 +337,14 @@ function gf_matches_operation(val1, val2, operation){
 			val1 = gf_try_convert_float(val1);
 			val2 = gf_try_convert_float(val2);
 
-			return gformIsNumber(val1) && gformIsNumber(val2) ? val1 > val2 : false;
+			return gform.utils.isNumber(val1) && gform.utils.isNumber(val2) ? val1 > val2 : false;
 			break;
 
 		case "<" :
 			val1 = gf_try_convert_float(val1);
 			val2 = gf_try_convert_float(val2);
 
-			return gformIsNumber(val1) && gformIsNumber(val2) ? val1 < val2 : false;
+			return gform.utils.isNumber(val1) && gform.utils.isNumber(val2) ? val1 < val2 : false;
 			break;
 
 		case "contains" :
@@ -345,12 +367,18 @@ function gf_matches_operation(val1, val2, operation){
 	return false;
 }
 
-function gf_get_value(val){
-	if(!val)
-		return "";
+function gf_get_value( val, $input ) {
+	if ( ! val ) {
+		return '';
+	}
 
-	val = val.split("|");
-	return val[0];
+	// Selection pricing fields are formatted as value|price. Split on the | to get the field label or value that is in the first position. 
+	// For all other pricing fields, splitting on the | won't have any effect.
+	if ( $input && $input.closest( '.gfield_price' ).length ) {
+		val = gformParseChoiceValue( val )['name'];
+	}
+
+	return val;
 }
 
 function gf_do_field_action(formId, action, fieldId, isInit, callback){
@@ -559,6 +587,12 @@ function gf_hide_button( $target ) {
 
 function gf_reset_to_default(targetId, defaultValue){
 
+	var $target = jQuery( targetId );
+    if( $target.hasClass('gfield_shipping') || $target.hasClass('gfield_total') ||
+        $target.hasClass('gfield--type-shipping') || $target.hasClass('gfield--type-total') ) {
+        return;
+    }
+
 	var dateFields = jQuery( targetId ).find( '.gfield_date_month input, .gfield_date_day input, .gfield_date_year input, .gfield_date_dropdown_month select, .gfield_date_dropdown_day select, .gfield_date_dropdown_year select' );
 	if( dateFields.length > 0 ) {
 
@@ -639,7 +673,7 @@ function gf_reset_to_default(targetId, defaultValue){
 				var inputId = element.attr( 'id' ).split( '_' ).slice( 2 ).join( '.' );
 				val = defaultValue[ inputId ];
 			}
-			if( ! val && element.attr( 'name' ) ) {
+			if( ! val && element.attr( 'name' ) && element.attr( 'type' ) != 'email' ) {
 				var inputId = element.attr( 'name' ).split( '_' )[1];
 				val = defaultValue[ inputId ];
 			}
@@ -691,6 +725,8 @@ function gf_reset_to_default(targetId, defaultValue){
 			}
 			else{
 				jQuery(this).prop('checked', doCheck).change();
+				// Triggering native change event so that non-jQuery code can listen to it.
+				this.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 			}
 
 		}
