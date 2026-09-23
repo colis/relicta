@@ -183,15 +183,15 @@
         },
         {
             "name": "wpackagist-plugin/aruba-hispeed-cache",
-            "version": "3.0.15",
+            "version": "3.1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/aruba-hispeed-cache/",
-                "reference": "tags/3.0.15"
+                "reference": "tags/3.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.3.0.15.zip"
+                "url": "https://downloads.wordpress.org/plugin/aruba-hispeed-cache.3.1.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -842,12 +842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "b2f0c372b930b228f36056c1dc3665759858c1c6"
+                "reference": "8c038cfcc4fca8ca50e3deff8c7c53befcb0aaa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/b2f0c372b930b228f36056c1dc3665759858c1c6",
-                "reference": "b2f0c372b930b228f36056c1dc3665759858c1c6",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/8c038cfcc4fca8ca50e3deff8c7c53befcb0aaa7",
+                "reference": "8c038cfcc4fca8ca50e3deff8c7c53befcb0aaa7",
                 "shasum": ""
             },
             "require": {
@@ -901,7 +901,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-09-11T18:24:55+00:00"
+            "time": "2026-09-21T00:35:30+00:00"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
