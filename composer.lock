@@ -201,15 +201,15 @@
         },
         {
             "name": "wpackagist-plugin/cookie-law-info",
-            "version": "3.5.6",
+            "version": "3.5.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cookie-law-info/",
-                "reference": "tags/3.5.6"
+                "reference": "tags/3.5.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cookie-law-info.3.5.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/cookie-law-info.3.5.7.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -255,15 +255,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "28.6",
+            "version": "28.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/28.6"
+                "reference": "tags/28.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.28.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.28.7.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -842,12 +842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "87988814d50a0d560ed89bf338300f85cbfb23a9"
+                "reference": "475e7223a25db76e0f138feff91ab1999f4c189f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/87988814d50a0d560ed89bf338300f85cbfb23a9",
-                "reference": "87988814d50a0d560ed89bf338300f85cbfb23a9",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/475e7223a25db76e0f138feff91ab1999f4c189f",
+                "reference": "475e7223a25db76e0f138feff91ab1999f4c189f",
                 "shasum": ""
             },
             "require": {
@@ -901,7 +901,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-09-26T19:04:56+00:00"
+            "time": "2026-10-22T08:16:15+00:00"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
