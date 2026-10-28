@@ -42,7 +42,7 @@
 		"husky": "^9.1.7",
 		"lint-staged": "^17.6.0",
 		"sass": "^1.106.1",
-		"sass-loader": "^17.0.1"
+		"sass-loader": "^17.1.0"
 	},
 	"engines": {
 		"node": ">=14.0.0"
